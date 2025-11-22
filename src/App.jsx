@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import ImageUploader from './components/ImageUploader';
 import StampPreview from './components/StampPreview';
+import LiveCamera from './components/LiveCamera';
 import { loadImage, processImage } from './utils/imageProcessing';
 
 function App() {
   const [image, setImage] = useState(null); // Original image
   const [processedImage, setProcessedImage] = useState(null); // B/W image
-  const [step, setStep] = useState('upload'); // upload, validate, preview
+  const [step, setStep] = useState('upload'); // upload, camera, validate, preview
 
   const handleImageSelect = async (imageData) => {
     setImage(imageData);
@@ -20,16 +21,42 @@ function App() {
     }
   };
 
+  const handleCameraCapture = (imageData) => {
+    // Image data from LiveCamera is already processed
+    setProcessedImage(imageData);
+    setStep('validate');
+  };
+
   return (
     <div className="step-container">
-      <header style={{ textAlign: 'center', padding: '20px 0' }}>
-        <h1>Stamp Gen</h1>
-        <p>Turn drawings into 3D stamps</p>
-      </header>
+      {step !== 'camera' && (
+        <header style={{ textAlign: 'center', padding: '20px 0' }}>
+          <h1>Stamp Gen</h1>
+          <p>Turn drawings into 3D stamps</p>
+        </header>
+      )}
 
       <main style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         {step === 'upload' && (
-          <ImageUploader onImageSelect={handleImageSelect} />
+          <>
+            <ImageUploader onImageSelect={handleImageSelect} />
+            <div style={{ textAlign: 'center', marginTop: '20px' }}>
+              <p style={{ marginBottom: '10px' }}>or</p>
+              <button
+                className="btn-primary"
+                onClick={() => setStep('camera')}
+              >
+                Open Live Camera
+              </button>
+            </div>
+          </>
+        )}
+
+        {step === 'camera' && (
+          <LiveCamera
+            onCapture={handleCameraCapture}
+            onCancel={() => setStep('upload')}
+          />
         )}
 
         {step === 'validate' && processedImage && (
