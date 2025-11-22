@@ -1,99 +1,16 @@
-# StampForge - 3D Printable Stamp Generator
+# React + Vite
 
-A mobile-first web application that converts hand-drawn shapes into 3D printable stamp models.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Phase 1 - Complete ✓
+Currently, two official plugins are available:
 
-Phase 1 delivers the foundation of the application with:
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-- React 19 + TypeScript + Vite
-- Tailwind CSS for styling
-- Three.js + React Three Fiber for 3D visualization
-- Mobile-responsive interface with touch controls
-- Image upload with camera capture support
-- Interactive 3D viewer with OrbitControls
+## React Compiler
 
-## Getting Started
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-### Installation
+## Expanding the ESLint configuration
 
-```bash
-pnpm install
-```
-
-### Development
-
-```bash
-pnpm run dev
-```
-
-Open your browser to the URL shown (typically http://localhost:5173)
-
-### Build
-
-```bash
-pnpm run build
-```
-
-### Preview Production Build
-
-```bash
-pnpm run preview
-```
-
-## Current Features (Phase 1)
-
-- **Header**: Simple branding and title
-- **3D Viewer**: Interactive canvas with touch-enabled orbit controls
-  - Neutral slate-gray background for good contrast
-  - Ambient and directional lighting
-  - Default placeholder cube when no image loaded
-- **Control Panel**: Bottom sheet with upload button
-  - File input with mobile camera support (`capture="environment"`)
-  - Accepts JPG/PNG images
-  - Displays uploaded images on a 3D plane
-
-## Usage
-
-1. Click "Upload / Take Photo" button
-2. On mobile: Choose to take a photo or select from gallery
-3. On desktop: Select an image file
-4. The image will appear on a plane in the 3D viewer
-5. Use touch/mouse to rotate and zoom the view
-
-## Tech Stack
-
-- **Framework**: React 19 with TypeScript
-- **Build Tool**: Vite 6
-- **Styling**: Tailwind CSS 4
-- **3D Engine**: Three.js
-- **3D React Bindings**: React Three Fiber
-- **3D Helpers**: @react-three/drei (OrbitControls, useTexture)
-
-## Next Steps (Phase 2)
-
-- Image processing (grayscale, thresholding)
-- Vectorization using canvas-based approach
-- Convert SVG paths to 3D geometry
-- Extrude shapes to create stamp face
-
-## Next Steps (Phase 3)
-
-- Mirror stamp face for correct impressions
-- Add procedural base/handle
-- STL export functionality
-- Threshold and smoothness sliders
-
-## Project Structure
-
-```
-src/
-├── components/
-│   ├── Header.tsx           # App header with branding
-│   ├── Viewer3D.tsx         # 3D canvas wrapper
-│   ├── Scene.tsx            # 3D scene with lighting and objects
-│   └── ControlPanel.tsx     # Upload controls
-├── App.tsx                  # Main app component
-├── main.tsx                 # Entry point
-└── index.css                # Global styles + Tailwind
-```
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
